@@ -1,17 +1,14 @@
-/*s
-const fs = require('fs');
-const https = require('https');
-const express = require('express');
+const express = require("express");
 const app = express();
 
-app.use(express.static('build'));
+const bodyParser = require('body-parser');
+const request = require('request');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.timeout = 0;
 
-const server = https.createServer({
-  key: fs.readFileSync('/Users/samehrlich/my-appttps/localhost-key.pem'),
-  cert: fs.readFileSync('/Users/samehrlich/my-appttps/localhost.pem')
-}, app);
+const port = 5000;
 
-server.listen(3000, () => {
-  console.log('Server running on https://localhost:3000');
-});
-*/
+app.listen(port,()=> console.log("port 5000"));
